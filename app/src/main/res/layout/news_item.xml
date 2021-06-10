@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/news_item_thumbnail"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        tools:ignore="ContentDescription"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/news_item_headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:padding="8dp"
+        android:layout_toRightOf="@+id/news_item_thumbnail"
+        android:layout_toEndOf="@+id/news_item_thumbnail" />
+
+    <TextView
+        android:id="@+id/news_item_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:layout_toRightOf="@+id/news_item_thumbnail"
+        android:layout_toEndOf="@+id/news_item_thumbnail"
+        android:layout_below="@id/news_item_headline"/>
+
+    <TextView
+        android:id="@+id/news_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:drawablePadding="4dp"
+        android:drawableLeft="@drawable/ic_today_black_24dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/news_item_author"
+        android:layout_alignParentEnd="true"
+        android:drawableStart="@drawable/ic_today_black_24dp" />
+
+    <View
+        android:background="@android:color/primary_text_light"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/news_item_date"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"/>
+
+
+
+</RelativeLayout>
