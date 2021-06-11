@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ExpandedTextApp" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CollapsedTextApp">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>

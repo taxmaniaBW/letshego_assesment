@@ -7,6 +7,7 @@ import com.mokgethisi.letshegoassesment.network.WebService;
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
+import retrofit2.Call;
 
 /**
  * Only purpose is to access data from local storage or remote
@@ -14,7 +15,7 @@ import io.reactivex.rxjava3.core.Observable;
 
 public class NewsRepository {
 
-    private WebService apiService;
+    private final WebService apiService;
 
     @Inject
     public NewsRepository(WebService apiService) {
@@ -22,7 +23,7 @@ public class NewsRepository {
     }
 
 
-    public Observable<MostViewedResponse> getMostPopularNews(){
+    public Call<MostViewedResponse> getMostPopularNews(){
         return apiService.getPopularNews();
     }
 

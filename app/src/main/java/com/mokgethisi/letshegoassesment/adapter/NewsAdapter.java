@@ -2,6 +2,8 @@ package com.mokgethisi.letshegoassesment.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.mokgethisi.letshegoassesment.R;
 import com.mokgethisi.letshegoassesment.data.mostviewedresponse.Result;
+import com.mokgethisi.letshegoassesment.ui.DetailsActivity;
 
 import java.util.List;
 
@@ -44,6 +47,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
      if (result.getMedia().size() != 0){
          Glide.with(mContext).load(result.getMedia().get(0).getMediaMetadata().get(0).getUrl()).circleCrop().into(holder.thumbNail);
      }
+
+     holder.itemView.setOnClickListener(view -> {
+         Intent intent = new Intent(mContext, DetailsActivity.class);
+         intent.putExtra("newsItem",result);
+         mContext.startActivity(intent);
+     });
 
 
     }

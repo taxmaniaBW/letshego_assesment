@@ -1,13 +1,16 @@
 
 package com.mokgethisi.letshegoassesment.data.mostviewedresponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Result {
+public class Result implements Parcelable {
 
     @SerializedName("uri")
     @Expose
@@ -75,6 +78,53 @@ public class Result {
     @SerializedName("eta_id")
     @Expose
     private Integer etaId;
+
+    protected Result(Parcel in) {
+        uri = in.readString();
+        url = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            assetId = null;
+        } else {
+            assetId = in.readLong();
+        }
+        source = in.readString();
+        publishedDate = in.readString();
+        updated = in.readString();
+        section = in.readString();
+        subsection = in.readString();
+        nytdsection = in.readString();
+        adxKeywords = in.readString();
+        byline = in.readString();
+        type = in.readString();
+        title = in.readString();
+        _abstract = in.readString();
+        desFacet = in.createStringArrayList();
+        orgFacet = in.createStringArrayList();
+        perFacet = in.createStringArrayList();
+        geoFacet = in.createStringArrayList();
+        if (in.readByte() == 0) {
+            etaId = null;
+        } else {
+            etaId = in.readInt();
+        }
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     public String getUri() {
         return uri;
@@ -252,4 +302,47 @@ public class Result {
         this.etaId = etaId;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(uri);
+        parcel.writeString(url);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(id);
+        }
+        if (assetId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(assetId);
+        }
+        parcel.writeString(source);
+        parcel.writeString(publishedDate);
+        parcel.writeString(updated);
+        parcel.writeString(section);
+        parcel.writeString(subsection);
+        parcel.writeString(nytdsection);
+        parcel.writeString(adxKeywords);
+        parcel.writeString(byline);
+        parcel.writeString(type);
+        parcel.writeString(title);
+        parcel.writeString(_abstract);
+        parcel.writeStringList(desFacet);
+        parcel.writeStringList(orgFacet);
+        parcel.writeStringList(perFacet);
+        parcel.writeStringList(geoFacet);
+        if (etaId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(etaId);
+        }
+    }
 }

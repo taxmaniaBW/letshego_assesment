@@ -1,12 +1,15 @@
 
 package com.mokgethisi.letshegoassesment.data.mostviewedresponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class MostViewedResponse {
+public class MostViewedResponse implements Parcelable {
 
     @SerializedName("status")
     @Expose
@@ -20,6 +23,28 @@ public class MostViewedResponse {
     @SerializedName("results")
     @Expose
     private List<Result> results = null;
+
+    protected MostViewedResponse(Parcel in) {
+        status = in.readString();
+        copyright = in.readString();
+        if (in.readByte() == 0) {
+            numResults = null;
+        } else {
+            numResults = in.readInt();
+        }
+    }
+
+    public static final Creator<MostViewedResponse> CREATOR = new Creator<MostViewedResponse>() {
+        @Override
+        public MostViewedResponse createFromParcel(Parcel in) {
+            return new MostViewedResponse(in);
+        }
+
+        @Override
+        public MostViewedResponse[] newArray(int size) {
+            return new MostViewedResponse[size];
+        }
+    };
 
     public String getStatus() {
         return status;
@@ -53,4 +78,20 @@ public class MostViewedResponse {
         this.results = results;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(status);
+        parcel.writeString(copyright);
+        if (numResults == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(numResults);
+        }
+    }
 }
