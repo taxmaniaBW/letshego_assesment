@@ -2,7 +2,7 @@
 
 The application was coded with both java and kotlin
 
-Libraries Uses
+Libraries Used
 
 * [Retrofit](https://github.com/square/retrofit) - For Network Calls
 * [Dagger Hilt](https://dagger.dev/hilt/) - For Dependency injection
